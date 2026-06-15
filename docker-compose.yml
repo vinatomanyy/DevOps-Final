@@ -27,6 +27,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: noseed
     ports:
       - "2223:22"
 

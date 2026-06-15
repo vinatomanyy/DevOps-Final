@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Component
-@Profile("!test")
+@Profile("!test & !noseed")
 @RequiredArgsConstructor
 public class DatabaseSeeder implements ApplicationRunner {
 
@@ -27,7 +27,6 @@ public class DatabaseSeeder implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        try {
         if (userRepository.count() > 0) return;
 
         User owner = new User();
@@ -127,8 +126,5 @@ public class DatabaseSeeder implements ApplicationRunner {
         fav.setUser(renter);
         fav.setTerrain(t1);
         favoriteRepository.save(fav);
-        } catch (Exception e) {
-            System.out.println("Seeder skipped: " + e.getMessage());
-        }
     }
 }
