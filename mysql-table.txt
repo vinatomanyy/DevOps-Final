@@ -1,0 +1,8 @@
+Tables_in_MANY_Vinato-db
+bookings
+favorites
+payments
+reviews
+terrain_images
+terrains
+users
