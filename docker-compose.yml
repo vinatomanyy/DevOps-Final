@@ -21,3 +21,21 @@ services:
       - "80:80"
       - "8081:8080"
       - "2222:22"
+
+  web2:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "2223:22"
+
+  lb:
+    image: nginx:latest
+    volumes:
+      - ./nginx-lb.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - web
+      - web2
+    ports:
+      - "8090:80"
