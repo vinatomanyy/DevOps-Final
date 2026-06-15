@@ -35,12 +35,13 @@ pipeline {
         failure {
             script {
                 def commitEmail = sh(script: 'git log -1 --pretty=format:%ae', returnStdout: true).trim()
+                def commitName = sh(script: 'git log -1 --pretty=format:%an', returnStdout: true).trim()
                 emailext(
                     subject: "BUILD FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                     body: """
 Build failed for ${env.JOB_NAME} #${env.BUILD_NUMBER}.
 
-Committed by: ${env.GIT_AUTHOR_NAME}
+Committed by: ${commitName}
 Branch: ${env.GIT_BRANCH}
 Check console output: ${env.BUILD_URL}
                     """,
