@@ -42,8 +42,8 @@ Committed by: ${env.GIT_AUTHOR_NAME}
 Branch: ${env.GIT_BRANCH}
 Check console output: ${env.BUILD_URL}
                 """,
-                to: 'srengty@gmail.com',
-                cc: "${env.GIT_AUTHOR_EMAIL}"
+                to: "${env.GIT_AUTHOR_EMAIL}",
+                cc: 'srengty@gmail.com'
             )
         }
         success {
