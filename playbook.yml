@@ -15,6 +15,11 @@
       args:
         chdir: "{{ app_dir }}"
 
+    - name: Remove untracked files before pull
+      command: git clean -fd
+      args:
+        chdir: "{{ app_dir }}"
+
     - name: Pull latest code from GitHub
       command: git pull
       args:
