@@ -31,11 +31,13 @@ services:
       - "2223:22"
 
   lb:
-    image: nginx:latest
+    build: .
     volumes:
-      - ./nginx-lb.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx-lb.conf:/etc/nginx/sites-available/default
+    entrypoint: ["/bin/bash", "-c", "service ssh start && nginx -g 'daemon off;'"]
     depends_on:
       - web
       - web2
     ports:
       - "8090:80"
+      - "2224:22"
